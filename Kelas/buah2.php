@@ -1,38 +1,38 @@
 <?php
-// ✅ Membuat class bernama 'buah2'
-class buah2 {
-    public $nama;   // ✅ Public: bisa diakses langsung dari luar class
-    public $warna;  // ✅ Public: bisa diakses langsung dari luar class
-    public $bobot;  // ✅ Public: bisa diakses langsung dari luar class
+class Buah {
+    public $nama;
+    public $warna;
+    public $bobot;
 
-    // ✅ Method setter untuk nama
-    // Tujuannya agar lebih rapi dan konsisten saat mengisi data
-    public function set_name($n) {
+    public function setNama($n) {
         $this->nama = $n;
     }
 
-    // ✅ Method setter untuk warna
-    public function set_color($n) {
+    protected function setWarna($n) {
         $this->warna = $n;
     }
 
-    // ✅ Method setter untuk bobot
-    public function set_weight($n) {
+    private function setBobot($n) {
         $this->bobot = $n;
+    }
+
+    public function setWarnaPublic($n) {
+        $this->setWarna($n);
+    }
+
+    public function setBobotPublic($n) {
+        $this->setBobot($n);
+    }
+
+    public function getInfo() {
+        return "Nama: {$this->nama}, Warna: {$this->warna}, Berat: {$this->bobot} gram";
     }
 }
 
-// ✅ Membuat objek baru dari class buah2
-$mango = new buah2();
+$mango = new Buah();
+$mango->setNama('Mangga');
+$mango->setWarnaPublic('Kuning');
+$mango->setBobotPublic('300');
 
-// ✅ Mengatur nilai properti menggunakan method setter
-$mango->set_name('Mango');      // Mengatur nama buah menjadi "Mango"
-$mango->set_color('Yellow');    // Mengatur warna buah menjadi "Yellow"
-$mango->set_weight('300');      // Mengatur bobot buah menjadi "300"
-
-// ✅ Menampilkan informasi dari objek mango
-// Properti bersifat public, jadi bisa diakses langsung
-echo "Nama: $mango->nama<br>";           // Output: Nama: Mango
-echo "Warna: $mango->warna<br>";         // Output: Warna: Yellow
-echo "Bobot: $mango->bobot gram";        // Output: Bobot: 300 gram
+echo $mango->getInfo();
 ?>
